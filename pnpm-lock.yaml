@@ -10,13 +10,13 @@ importers:
     devDependencies:
       '@lerna-lite/cli':
         specifier: ^3.7.1
-        version: 3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5))(@lerna-lite/version@3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5))(typescript@4.9.5))(typescript@4.9.5)
+        version: 3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4))(@lerna-lite/version@3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4))(typescript@5.5.4))(typescript@5.5.4)
       '@lerna-lite/list':
         specifier: ^3.7.1
-        version: 3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5)
+        version: 3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4)
       '@lerna-lite/publish':
         specifier: ^3.7.1
-        version: 3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5)
+        version: 3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4)
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
@@ -49,8 +49,8 @@ importers:
         specifier: ^5.2.5
         version: 5.2.7
       '@types/node':
-        specifier: ^14.14.32
-        version: 14.18.63
+        specifier: ^22.0.0
+        version: 22.0.0
       '@types/sinon':
         specifier: ^5.0.1
         version: 5.0.7
@@ -88,14 +88,10 @@ importers:
         specifier: ^7.0.0
         version: 7.0.1
       typescript:
-        specifier: ^4.2.3
-        version: 4.9.5
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/parser:
-    dependencies:
-      typescript:
-        specifier: ^2.9.2 || ^3.0.0 || ^4.0.0
-        version: 4.9.5
     devDependencies:
       '@types/chai':
         specifier: ^4.1.4
@@ -103,6 +99,9 @@ importers:
       '@types/mocha':
         specifier: ^5.2.5
         version: 5.2.7
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.0.0
       '@types/sinon':
         specifier: ^5.0.1
         version: 5.0.7
@@ -139,6 +138,9 @@ importers:
       ts-node:
         specifier: ^7.0.0
         version: 7.0.1
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/rollup-plugin-html-css-minifier:
     dependencies:
@@ -156,8 +158,8 @@ importers:
         specifier: ^5.2.5
         version: 5.2.7
       '@types/node':
-        specifier: ^14.14.32
-        version: 14.18.63
+        specifier: ^22.0.0
+        version: 22.0.0
       '@types/sinon':
         specifier: ^5.0.1
         version: 5.0.7
@@ -198,8 +200,8 @@ importers:
         specifier: ^7.0.0
         version: 7.0.1
       typescript:
-        specifier: ^4.2.3
-        version: 4.9.5
+        specifier: ^5.5.4
+        version: 5.5.4
 
 packages:
 
@@ -649,11 +651,11 @@ packages:
   '@types/mute-stream@0.0.4':
     resolution: {integrity: sha512-CPM9nzrCPPJHQNA9keH9CVkVI+WR5kMa+7XEs5jcGQ0VoAGnLv242w8lIVgwAEfmE4oufJRaTc9PNLQl0ioAow==}
 
-  '@types/node@14.18.63':
-    resolution: {integrity: sha512-fAtCfv4jJg+ExtXhvCkCqUKZ+4ok/JQk01qDKhL5BDDoS3AxKXhV5/MAVUZyQnSEd2GT92fkgZl0pz0Q0AzcIQ==}
-
   '@types/node@20.14.13':
     resolution: {integrity: sha512-+bHoGiZb8UiQ0+WEtmph2IWQCjIqg8MDZMAV+ppRRhUZnquF5mQkP/9vpSwJClEiSM/C7fZZExPzfU0vJTyp8w==}
+
+  '@types/node@22.0.0':
+    resolution: {integrity: sha512-VT7KSYudcPOzP5Q0wfbowyNLaVR8QWUdw+088uFWwfvpY6uCWaXpqV6ieLAu9WBcnTa7H4Z5RLK8I5t2FuOcqw==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -3973,6 +3975,11 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
+  typescript@5.5.4:
+    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
   uglify-js@3.19.1:
     resolution: {integrity: sha512-y/2wiW+ceTYR2TSSptAhfnEtpLaQ4Ups5zrjB2d3kuVxHj16j/QJwPl5PvuGy9uARb39J0+iKxcRPvtpsx4A4A==}
     engines: {node: '>=0.8.0'}
@@ -3983,6 +3990,9 @@ packages:
 
   undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+
+  undici-types@6.11.1:
+    resolution: {integrity: sha512-mIDEX2ek50x0OlRgxryxsenE5XaQD4on5U2inY7RApK3SOJpofyw7uW2AyfMKkhAxXIceo2DeWGVGwyvng1GNQ==}
 
   unicorn-magic@0.1.0:
     resolution: {integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ==}
@@ -4489,10 +4499,10 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@lerna-lite/cli@3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5))(@lerna-lite/version@3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5))(typescript@4.9.5))(typescript@4.9.5)':
+  '@lerna-lite/cli@3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4))(@lerna-lite/version@3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4))(typescript@5.5.4))(typescript@5.5.4)':
     dependencies:
-      '@lerna-lite/core': 3.7.1(typescript@4.9.5)
-      '@lerna-lite/init': 3.7.1(typescript@4.9.5)
+      '@lerna-lite/core': 3.7.1(typescript@5.5.4)
+      '@lerna-lite/init': 3.7.1(typescript@5.5.4)
       '@lerna-lite/npmlog': 3.7.0
       dedent: 1.5.3
       dotenv: 16.4.5
@@ -4500,23 +4510,23 @@ snapshots:
       load-json-file: 7.0.1
       yargs: 17.7.2
     optionalDependencies:
-      '@lerna-lite/list': 3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5)
-      '@lerna-lite/publish': 3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5)
-      '@lerna-lite/version': 3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5))(typescript@4.9.5)
+      '@lerna-lite/list': 3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4)
+      '@lerna-lite/publish': 3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4)
+      '@lerna-lite/version': 3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4))(typescript@5.5.4)
     transitivePeerDependencies:
       - babel-plugin-macros
       - bluebird
       - supports-color
       - typescript
 
-  '@lerna-lite/core@3.7.1(typescript@4.9.5)':
+  '@lerna-lite/core@3.7.1(typescript@5.5.4)':
     dependencies:
       '@lerna-lite/npmlog': 3.7.0
       '@npmcli/run-script': 8.1.0
       chalk: 5.3.0
       clone-deep: 4.0.1
       config-chain: 1.1.13
-      cosmiconfig: 9.0.0(typescript@4.9.5)
+      cosmiconfig: 9.0.0(typescript@5.5.4)
       dedent: 1.5.3
       execa: 8.0.1
       fs-extra: 11.2.0
@@ -4543,9 +4553,9 @@ snapshots:
       - supports-color
       - typescript
 
-  '@lerna-lite/filter-packages@3.7.1(typescript@4.9.5)':
+  '@lerna-lite/filter-packages@3.7.1(typescript@5.5.4)':
     dependencies:
-      '@lerna-lite/core': 3.7.1(typescript@4.9.5)
+      '@lerna-lite/core': 3.7.1(typescript@5.5.4)
       '@lerna-lite/npmlog': 3.7.0
       multimatch: 7.0.0
     transitivePeerDependencies:
@@ -4554,9 +4564,9 @@ snapshots:
       - supports-color
       - typescript
 
-  '@lerna-lite/init@3.7.1(typescript@4.9.5)':
+  '@lerna-lite/init@3.7.1(typescript@5.5.4)':
     dependencies:
-      '@lerna-lite/core': 3.7.1(typescript@4.9.5)
+      '@lerna-lite/core': 3.7.1(typescript@5.5.4)
       fs-extra: 11.2.0
       p-map: 7.0.2
       write-json-file: 5.0.0
@@ -4566,12 +4576,12 @@ snapshots:
       - supports-color
       - typescript
 
-  '@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5)':
+  '@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4)':
     dependencies:
-      '@lerna-lite/cli': 3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5))(@lerna-lite/version@3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5))(typescript@4.9.5))(typescript@4.9.5)
-      '@lerna-lite/core': 3.7.1(typescript@4.9.5)
-      '@lerna-lite/filter-packages': 3.7.1(typescript@4.9.5)
-      '@lerna-lite/listable': 3.7.1(typescript@4.9.5)
+      '@lerna-lite/cli': 3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4))(@lerna-lite/version@3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4))(typescript@5.5.4))(typescript@5.5.4)
+      '@lerna-lite/core': 3.7.1(typescript@5.5.4)
+      '@lerna-lite/filter-packages': 3.7.1(typescript@5.5.4)
+      '@lerna-lite/listable': 3.7.1(typescript@5.5.4)
     transitivePeerDependencies:
       - '@lerna-lite/exec'
       - '@lerna-lite/publish'
@@ -4583,9 +4593,9 @@ snapshots:
       - supports-color
       - typescript
 
-  '@lerna-lite/listable@3.7.1(typescript@4.9.5)':
+  '@lerna-lite/listable@3.7.1(typescript@5.5.4)':
     dependencies:
-      '@lerna-lite/core': 3.7.1(typescript@4.9.5)
+      '@lerna-lite/core': 3.7.1(typescript@5.5.4)
       chalk: 5.3.0
       columnify: 1.6.0
     transitivePeerDependencies:
@@ -4606,12 +4616,12 @@ snapshots:
       strip-ansi: 7.1.0
       wide-align: 1.1.5
 
-  '@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5)':
+  '@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4)':
     dependencies:
-      '@lerna-lite/cli': 3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5))(@lerna-lite/version@3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5))(typescript@4.9.5))(typescript@4.9.5)
-      '@lerna-lite/core': 3.7.1(typescript@4.9.5)
+      '@lerna-lite/cli': 3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4))(@lerna-lite/version@3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4))(typescript@5.5.4))(typescript@5.5.4)
+      '@lerna-lite/core': 3.7.1(typescript@5.5.4)
       '@lerna-lite/npmlog': 3.7.0
-      '@lerna-lite/version': 3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5))(typescript@4.9.5)
+      '@lerna-lite/version': 3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4))(typescript@5.5.4)
       '@npmcli/arborist': 7.5.4
       '@npmcli/package-json': 5.2.0
       byte-size: 8.2.1
@@ -4643,10 +4653,10 @@ snapshots:
       - supports-color
       - typescript
 
-  '@lerna-lite/version@3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5))(typescript@4.9.5)':
+  '@lerna-lite/version@3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4))(typescript@5.5.4)':
     dependencies:
-      '@lerna-lite/cli': 3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5))(@lerna-lite/version@3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@4.9.5))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@4.9.5))(typescript@4.9.5))(typescript@4.9.5)
-      '@lerna-lite/core': 3.7.1(typescript@4.9.5)
+      '@lerna-lite/cli': 3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4))(@lerna-lite/version@3.7.1(@lerna-lite/list@3.7.1(@lerna-lite/publish@3.7.1)(typescript@5.5.4))(@lerna-lite/publish@3.7.1(@lerna-lite/list@3.7.1)(typescript@5.5.4))(typescript@5.5.4))(typescript@5.5.4)
+      '@lerna-lite/core': 3.7.1(typescript@5.5.4)
       '@lerna-lite/npmlog': 3.7.0
       '@octokit/plugin-enterprise-rest': 6.0.1
       '@octokit/rest': 21.0.1
@@ -4971,7 +4981,7 @@ snapshots:
 
   '@types/clean-css@4.2.0':
     dependencies:
-      '@types/node': 14.18.63
+      '@types/node': 22.0.0
 
   '@types/html-minifier@3.5.3':
     dependencies:
@@ -4985,13 +4995,15 @@ snapshots:
 
   '@types/mute-stream@0.0.4':
     dependencies:
-      '@types/node': 14.18.63
-
-  '@types/node@14.18.63': {}
+      '@types/node': 22.0.0
 
   '@types/node@20.14.13':
     dependencies:
       undici-types: 5.26.5
+
+  '@types/node@22.0.0':
+    dependencies:
+      undici-types: 6.11.1
 
   '@types/normalize-package-data@2.4.4': {}
 
@@ -5665,14 +5677,14 @@ snapshots:
       js-yaml: 3.14.1
       parse-json: 4.0.0
 
-  cosmiconfig@9.0.0(typescript@4.9.5):
+  cosmiconfig@9.0.0(typescript@5.5.4):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 4.9.5
+      typescript: 5.5.4
 
   coveralls@3.1.1:
     dependencies:
@@ -8663,6 +8675,8 @@ snapshots:
 
   typescript@4.9.5: {}
 
+  typescript@5.5.4: {}
+
   uglify-js@3.19.1: {}
 
   unbox-primitive@1.0.2:
@@ -8673,6 +8687,8 @@ snapshots:
       which-boxed-primitive: 1.0.2
 
   undici-types@5.26.5: {}
+
+  undici-types@6.11.1: {}
 
   unicorn-magic@0.1.0: {}
 
