@@ -4,3 +4,4 @@
 **/*.js
 **/*.map
 **/*.d.ts
+!declarations.d.ts
