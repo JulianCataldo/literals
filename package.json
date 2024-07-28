@@ -1,6 +1,6 @@
 {
   "name": "root",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "private": true,
   "scripts": {
@@ -13,9 +13,9 @@
   "license": "ISC",
   "packageManager": "pnpm@9.5.0",
   "devDependencies": {
-    "prettier": "^3.3.3",
     "@lerna-lite/cli": "^3.7.1",
     "@lerna-lite/list": "^3.7.1",
-    "@lerna-lite/publish": "^3.7.1"
+    "@lerna-lite/publish": "^3.7.1",
+    "prettier": "^3.3.3"
   }
 }
