@@ -18,7 +18,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/asyncLiz/rollup-plugin-minify-html-literals.git"
+    "url": "https://github.com/JulianCataldo/literals",
+    "directory": "./packages/rollup-plugin-html-css-minifier"
   },
   "scripts": {
     "clean": "rimraf \"src/**/*.{js*,d.ts}\" && rimraf \"index.{js*,d.ts}\" && rimraf \"{.nyc_output/,coverage/}\"",

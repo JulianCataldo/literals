@@ -17,7 +17,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/asyncLiz/minify-html-literals.git"
+    "url": "https://github.com/JulianCataldo/literals",
+    "directory": "./packages/minify-html-literals"
   },
   "scripts": {
     "clean": "tsc --build --clean && rimraf \"{.nyc_output/,coverage/}\"",
