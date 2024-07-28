@@ -28,7 +28,11 @@ describe('strategy', () => {
       it('should append "_" if placeholder exists in templates', () => {
         const regularPlaceholder = defaultStrategy.getPlaceholder(parts);
         const oneUnderscore = defaultStrategy.getPlaceholder([
-          { text: regularPlaceholder, start: 0, end: regularPlaceholder.length }
+          {
+            text: regularPlaceholder,
+            start: 0,
+            end: regularPlaceholder.length
+          }
         ]);
 
         expect(oneUnderscore).not.to.equal(regularPlaceholder);

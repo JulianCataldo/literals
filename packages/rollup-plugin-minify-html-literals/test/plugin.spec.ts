@@ -27,7 +27,7 @@ describe('minify-html-literals', () => {
     const plugin = minifyHTML(options);
     expect(options.minifyHTMLLiterals).to.be.a('function');
     const minifySpy = spy(options, 'minifyHTMLLiterals');
-    plugin.transform.apply((context as unknown) as TransformPluginContext, [
+    plugin.transform.apply(context as unknown as TransformPluginContext, [
       'return',
       fileName
     ]);
@@ -45,7 +45,7 @@ describe('minify-html-literals', () => {
 
     const plugin = minifyHTML(options);
     const minifySpy = spy(options, 'minifyHTMLLiterals');
-    plugin.transform.apply((context as unknown) as TransformPluginContext, [
+    plugin.transform.apply(context as unknown as TransformPluginContext, [
       'return',
       fileName
     ]);
@@ -71,7 +71,7 @@ describe('minify-html-literals', () => {
       minifyHTMLLiterals: customMinify
     });
 
-    plugin.transform.apply((context as unknown) as TransformPluginContext, [
+    plugin.transform.apply(context as unknown as TransformPluginContext, [
       'return',
       fileName
     ]);
@@ -85,7 +85,7 @@ describe('minify-html-literals', () => {
       }
     });
 
-    plugin.transform.apply((context as unknown) as TransformPluginContext, [
+    plugin.transform.apply(context as unknown as TransformPluginContext, [
       'return',
       fileName
     ]);
@@ -101,7 +101,7 @@ describe('minify-html-literals', () => {
       failOnError: true
     });
 
-    plugin.transform.apply((context as unknown) as TransformPluginContext, [
+    plugin.transform.apply(context as unknown as TransformPluginContext, [
       'return',
       fileName
     ]);
@@ -130,7 +130,7 @@ describe('minify-html-literals', () => {
     };
 
     const plugin = minifyHTML(options);
-    plugin.transform.apply((context as unknown) as TransformPluginContext, [
+    plugin.transform.apply(context as unknown as TransformPluginContext, [
       'return',
       fileName
     ]);
