@@ -1,7 +1,7 @@
 # https://help.github.com/en/categories/automating-your-workflow-with-github-actions
 # See: https://github.com/JulianCataldo/gh-actions
 
-name: Release
+name: CI / Release
 
 on:
   workflow_dispatch:
