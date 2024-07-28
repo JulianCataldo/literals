@@ -110,7 +110,11 @@ jobs:
       - name: Tests — Unit
         shell: bash
         run: pnpm -r run test
-      
+
+      # - name: Coveralls.io
+      #   shell: bash
+      #   run: pnpm -r run coveralls
+
       # - name: Tests — Integration
       #   shell: bash
       #   run: pnpm run test

@@ -6,7 +6,11 @@ settings:
 
 importers:
 
-  .: {}
+  .:
+    devDependencies:
+      prettier:
+        specifier: ^3.3.3
+        version: 3.3.3
 
   packages/minify-html-literals:
     dependencies:
@@ -59,9 +63,6 @@ importers:
       nyc:
         specifier: ^15.0.0
         version: 15.1.0
-      prettier:
-        specifier: ^1.13.7
-        version: 1.19.1
       rimraf:
         specifier: ^2.6.2
         version: 2.7.1
@@ -114,9 +115,6 @@ importers:
       nyc:
         specifier: ^15.0.0
         version: 15.1.0
-      prettier:
-        specifier: ^1.13.7
-        version: 1.19.1
       rimraf:
         specifier: ^2.6.2
         version: 2.7.1
@@ -172,9 +170,6 @@ importers:
       nyc:
         specifier: ^15.0.0
         version: 15.1.0
-      prettier:
-        specifier: ^1.13.7
-        version: 1.19.1
       rimraf:
         specifier: ^2.6.2
         version: 2.7.1
@@ -2225,9 +2220,9 @@ packages:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
     engines: {node: '>= 0.4'}
 
-  prettier@1.19.1:
-    resolution: {integrity: sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==}
-    engines: {node: '>=4'}
+  prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
+    engines: {node: '>=14'}
     hasBin: true
 
   pretty-format@23.6.0:
@@ -5292,7 +5287,7 @@ snapshots:
 
   possible-typed-array-names@1.0.0: {}
 
-  prettier@1.19.1: {}
+  prettier@3.3.3: {}
 
   pretty-format@23.6.0:
     dependencies:
