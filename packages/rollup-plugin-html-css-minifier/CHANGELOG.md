@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/JulianCataldo/literals/compare/@literals/rollup-plugin-html-css-minifier@1.2.7...@literals/rollup-plugin-html-css-minifier@2.0.0) (2024-07-28)
+
+* fix!: replace `html-minifier` with `html-minifier-terser` ([38a5e19](https://github.com/JulianCataldo/literals/commit/38a5e19d9a250d2eb39518b741450a6b2d0b5785))
+
+### BREAKING CHANGES
+
+* The new API now uses a promise.
+
 ## 1.2.7 (2024-07-28)
 
 **Note:** Version bump only for package @literals/rollup-plugin-html-css-minifier

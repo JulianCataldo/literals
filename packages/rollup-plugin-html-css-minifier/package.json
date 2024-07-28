@@ -1,6 +1,6 @@
 {
   "name": "@literals/rollup-plugin-html-css-minifier",
-  "version": "1.2.7",
+  "version": "2.0.0",
   "description": "Rollup plugin to minify HTML template literal strings",
   "main": "index.js",
   "types": "index.d.ts",
@@ -57,7 +57,7 @@
     "all": true
   },
   "dependencies": {
-    "@literals/html-css-minifier": "workspace:",
+    "@literals/html-css-minifier": "workspace:2.0.0",
     "rollup-pluginutils": "^2.8.2"
   },
   "peerDependencies": {
