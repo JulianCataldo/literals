@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import * as minify from 'minify-html-literals';
+import * as minify from '@literals/html-css-minifier';
 import * as path from 'path';
 import { TransformPluginContext } from 'rollup';
 import { match, SinonSpy, spy } from 'sinon';

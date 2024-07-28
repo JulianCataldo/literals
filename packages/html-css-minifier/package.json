@@ -56,11 +56,11 @@
     "all": true
   },
   "dependencies": {
-    "@types/html-minifier": "^3.5.3",
+    "@types/html-minifier-terser": "^7.0.2",
     "clean-css": "4.2.1",
-    "html-minifier": "^4.0.0",
+    "html-minifier-terser": "^7.2.0",
     "magic-string": "^0.25.0",
-    "parse-literals": "^1.2.1"
+    "@literals/parser": "workspace:"
   },
   "devDependencies": {
     "@types/chai": "^4.1.4",

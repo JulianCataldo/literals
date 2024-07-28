@@ -5,8 +5,8 @@ import {
   OptimizationLevel,
   optimizationLevelFrom
 } from 'clean-css/lib/options/optimization-level';
-import { Options as HTMLOptions, minify } from 'html-minifier';
-import { TemplatePart } from 'parse-literals';
+import { Options as HTMLOptions, minify } from 'html-minifier-terser';
+import { TemplatePart } from '@literals/parser';
 
 /**
  * A strategy on how to minify HTML and optionally CSS.
@@ -44,7 +44,7 @@ export interface Strategy<O = any, C = any> {
    * @param options html minify options
    * @returns minified HTML string
    */
-  minifyHTML(html: string, options?: O): string;
+  minifyHTML(html: string, options?: O): Promise<string>;
   /**
    * Minifies the provided CSS string.
    *
@@ -111,7 +111,8 @@ export const defaultStrategy: Strategy<HTMLOptions, CleanCSS.Options> = {
   combineHTMLStrings(parts, placeholder) {
     return parts.map(part => part.text).join(placeholder);
   },
-  minifyHTML(html, options = {}) {
+
+  async minifyHTML(html, options = {}) {
     let minifyCSSOptions: HTMLOptions['minifyCSS'];
     if (options.minifyCSS) {
       if (
@@ -133,7 +134,7 @@ export const defaultStrategy: Strategy<HTMLOptions, CleanCSS.Options> = {
       adjustedMinifyCSSOptions = adjustMinifyCSSOptions(minifyCSSOptions);
     }
 
-    let result = minify(html, {
+    let result = await minify(html, {
       ...options,
       minifyCSS: adjustedMinifyCSSOptions
     });
@@ -169,6 +170,7 @@ export const defaultStrategy: Strategy<HTMLOptions, CleanCSS.Options> = {
 
     return result;
   },
+
   minifyCSS(css, options = {}) {
     const adjustedOptions = adjustMinifyCSSOptions(options);
     const output = new CleanCSS(adjustedOptions).minify(css);
@@ -182,6 +184,7 @@ export const defaultStrategy: Strategy<HTMLOptions, CleanCSS.Options> = {
 
     return output.styles;
   },
+
   splitHTMLByPlaceholder(html, placeholder) {
     const parts = html.split(placeholder);
     // Make the last character (a semicolon) optional. See above.

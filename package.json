@@ -1,11 +1,11 @@
 {
-  "name": "root",
+  "name": "@literals/root",
   "version": "0.1.0",
   "type": "module",
   "private": true,
   "scripts": {
-    "test": "pnpm -r test",
-    "build": "pnpm -r build",
+    "test": "FORCE_COLOR=1 pnpm -r --parallel test",
+    "build": "FORCE_COLOR=1 pnpm -r build",
     "lint": "prettier --write \"packages/*/{src,test}/**/*.{js,ts,json,md}\""
   },
   "keywords": [],

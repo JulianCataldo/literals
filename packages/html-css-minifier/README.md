@@ -16,7 +16,7 @@ Template literals are often used in JavaScript to write HTML and CSS markup (ex.
 import { minifyHTMLLiterals } from 'minify-html-literals';
 // const minifyHTMLLiterals = require('minify-html-literals').minifyHTMLLiterals
 
-const result = minifyHTMLLiterals(
+const result = await minifyHTMLLiterals(
   `function render(title, items) {
     return html\`
       <style>
@@ -84,14 +84,14 @@ The following options are common to typical use cases.
 
 All aspects of the API are exposed and customizable. The following options will not typically be used unless you need to change how a certain aspect of the API handles a use case.
 
-| Property                | Type                                                                      | Default                                                        | Description                                                                                                                                                |
-| ----------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `generateSourceMap?`    | boolean or `(ms: MagicString, fileName: string) => SourceMap | undefined` | `defaultGenerateSourceMap`                                     | Set to `false` to disable source maps, or a custom function to control how source maps are generated from a `MagicString` instance.                        |
-| `strategy?`             | object                                                                    | `defaultStrategy`                                              | An object with methods defining how to minify HTML. The default strategy uses [html-minifier](https://www.npmjs.com/package/html-minifier).                |
-| `validate?`             | boolean or object                                                         | `defaultValidation`                                            | Set to `false` to disable strategy validation checks, or to a custom set of validation functions. This is only useful when implementing a custom strategy. |
-| `parseLiterals?`        | function                                                                  | [parse-literals](https://www.npmjs.com/package/parse-literals) | Override the function used to parse template literals from a source string.                                                                                |
-| `parseLiteralsOptions?` | object                                                                    |                                                                | Additional options to pass to `parseLiterals()`                                                                                                            |
-| `MagicString?`          | function                                                                  | [MagicString](https://www.npmjs.com/package/magic-string)      | Override the MagicString-like constructor to use for manipulating the source string and generating source maps.                                            |
+| Property                | Type                                                         | Default                                                        | Description                                                                                                                                                |
+| ----------------------- | ------------------------------------------------------------ | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `generateSourceMap?`    | boolean or `(ms: MagicString, fileName: string) => SourceMap | undefined`                                                     | `defaultGenerateSourceMap`                                                                                                                                 | Set to `false` to disable source maps, or a custom function to control how source maps are generated from a `MagicString` instance. |
+| `strategy?`             | object                                                       | `defaultStrategy`                                              | An object with methods defining how to minify HTML. The default strategy uses [html-minifier](https://www.npmjs.com/package/html-minifier).                |
+| `validate?`             | boolean or object                                            | `defaultValidation`                                            | Set to `false` to disable strategy validation checks, or to a custom set of validation functions. This is only useful when implementing a custom strategy. |
+| `parseLiterals?`        | function                                                     | [parse-literals](https://www.npmjs.com/package/parse-literals) | Override the function used to parse template literals from a source string.                                                                                |
+| `parseLiteralsOptions?` | object                                                       |                                                                | Additional options to pass to `parseLiterals()`                                                                                                            |
+| `MagicString?`          | function                                                     | [MagicString](https://www.npmjs.com/package/magic-string)      | Override the MagicString-like constructor to use for manipulating the source string and generating source maps.                                            |
 
 ## Customization Examples
 
@@ -102,7 +102,7 @@ All aspects of the API are exposed and customizable. The following options will 
 ```js
 import { minifyHTMLLiterals, defaultShouldMinify } from 'minify-html-literals';
 
-minifyHTMLLiterals(
+await minifyHTMLLiterals(
   `
     template.innerHTML = \`
       <dom-module id="custom-styles">
@@ -133,7 +133,7 @@ minifyHTMLLiterals(
 ```js
 import { minifyHTMLLiterals, defaultMinifyOptions } from 'minify-html-literals';
 
-minifyHTMLLiterals(source, {
+await minifyHTMLLiterals(source, {
   fileName: 'render.js',
   minifyOptions: {
     ...defaultMinifyOptions,
@@ -146,7 +146,7 @@ minifyHTMLLiterals(source, {
 ### Modify generated SourceMap
 
 ```js
-minifyHTMLLiterals(source, {
+await minifyHTMLLiterals(source, {
   fileName: 'render.js',
   generateSourceMap(ms, fileName) {
     return ms.generateMap({

@@ -13,9 +13,8 @@
   },
 
   "packages": [
-    "./",
-    "./packages/parse-literals",
-    "./packages/minify-html-literals",
-    "./packages/rollup-plugin-minify-html-literals"
+    "./packages/parser",
+    "./packages/html-css-minifier",
+    "./packages/rollup-plugin-html-css-minifier"
   ]
 }

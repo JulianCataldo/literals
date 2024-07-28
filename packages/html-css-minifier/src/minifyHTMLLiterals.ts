@@ -4,7 +4,7 @@ import {
   TemplatePart,
   ParseLiteralsOptions,
   parseLiterals
-} from 'parse-literals';
+} from '@literals/parser';
 import { Strategy, defaultMinifyOptions, defaultStrategy } from './strategy';
 
 /**
@@ -239,10 +239,10 @@ export const defaultValidation: Validation = {
  * @param options minification options
  * @returns the minified code, or null if no minification occurred.
  */
-export function minifyHTMLLiterals(
+export async function minifyHTMLLiterals(
   source: string,
   options?: DefaultOptions
-): Result | null;
+): Promise<Result | null>;
 /**
  * Minifies all HTML template literals in the provided source string.
  *
@@ -250,14 +250,14 @@ export function minifyHTMLLiterals(
  * @param options minification options
  * @returns the minified code, or null if no minification occurred.
  */
-export function minifyHTMLLiterals<S extends Strategy>(
+export async function minifyHTMLLiterals<S extends Strategy>(
   source: string,
   options?: CustomOptions<S>
-): Result | null;
-export function minifyHTMLLiterals(
+): Promise<Result | null>;
+export async function minifyHTMLLiterals(
   source: string,
   options: Options = {}
-): Result | null {
+): Promise<Result | null> {
   options.minifyOptions = {
     ...defaultMinifyOptions,
     ...(options.minifyOptions || {})
@@ -294,47 +294,54 @@ export function minifyHTMLLiterals(
   }
 
   const ms = new options.MagicString(source);
-  templates.forEach(template => {
-    const minifyHTML = shouldMinify(template);
-    const minifyCSS = !!strategy.minifyCSS && shouldMinifyCSS(template);
-    if (minifyHTML || minifyCSS) {
-      const placeholder = strategy.getPlaceholder(template.parts);
-      if (validate) {
-        validate.ensurePlaceholderValid(placeholder);
-      }
+  await Promise.all(
+    templates.map(async template => {
+      const minifyHTML = shouldMinify(template);
+      const minifyCSS = !!strategy.minifyCSS && shouldMinifyCSS(template);
+      if (minifyHTML || minifyCSS) {
+        const placeholder = strategy.getPlaceholder(template.parts);
+        if (validate) {
+          validate.ensurePlaceholderValid(placeholder);
+        }
 
-      const combined = strategy.combineHTMLStrings(template.parts, placeholder);
-      let min: string;
-      if (minifyCSS) {
-        const minifyCSSOptions = (
-          (options as DefaultOptions).minifyOptions || {}
-        ).minifyCSS;
-        if (typeof minifyCSSOptions === 'function') {
-          min = minifyCSSOptions(combined);
-        } else if (minifyCSSOptions === false) {
-          min = combined;
+        const combined = strategy.combineHTMLStrings(
+          template.parts,
+          placeholder
+        );
+        let min: string;
+        if (minifyCSS) {
+          const minifyCSSOptions = (
+            (options as DefaultOptions).minifyOptions || {}
+          ).minifyCSS;
+          if (typeof minifyCSSOptions === 'function') {
+            min = minifyCSSOptions(combined);
+          } else if (minifyCSSOptions === false) {
+            min = combined;
+          } else {
+            const cssOptions =
+              typeof minifyCSSOptions === 'object'
+                ? minifyCSSOptions
+                : undefined;
+            min = strategy.minifyCSS!(combined, cssOptions);
+          }
         } else {
-          const cssOptions =
-            typeof minifyCSSOptions === 'object' ? minifyCSSOptions : undefined;
-          min = strategy.minifyCSS!(combined, cssOptions);
+          min = await strategy.minifyHTML(combined, options.minifyOptions);
         }
-      } else {
-        min = strategy.minifyHTML(combined, options.minifyOptions);
-      }
 
-      const minParts = strategy.splitHTMLByPlaceholder(min, placeholder);
-      if (validate) {
-        validate.ensureHTMLPartsValid(template.parts, minParts);
-      }
-
-      template.parts.forEach((part, index) => {
-        if (part.start < part.end) {
-          // Only overwrite if the literal part has text content
-          ms.overwrite(part.start, part.end, minParts[index]);
+        const minParts = strategy.splitHTMLByPlaceholder(min, placeholder);
+        if (validate) {
+          validate.ensureHTMLPartsValid(template.parts, minParts);
         }
-      });
-    }
-  });
+
+        template.parts.forEach((part, index) => {
+          if (part.start < part.end) {
+            // Only overwrite if the literal part has text content
+            ms.overwrite(part.start, part.end, minParts[index]);
+          }
+        });
+      }
+    })
+  );
 
   const sourceMin = ms.toString();
   if (source === sourceMin) {

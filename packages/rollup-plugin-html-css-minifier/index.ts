@@ -1,5 +1,5 @@
 /// <reference path="declarations.d.ts" />
-import * as minify from 'minify-html-literals';
+import * as minify from '@literals/html-css-minifier';
 import {
   Plugin,
   SourceDescription,
@@ -40,7 +40,7 @@ export interface Options {
   filter?: (id: string) => boolean;
 }
 
-export default function(
+export default function (
   options: Options = {}
 ): Plugin & { transform: TransformHook } {
   if (!options.minifyHTMLLiterals) {
@@ -55,10 +55,10 @@ export default function(
 
   return {
     name: 'minify-html-literals',
-    transform(this: PluginContext, code: string, id: string) {
+    async transform(this: PluginContext, code: string, id: string) {
       if (options.filter!(id)) {
         try {
-          return <SourceDescription>options.minifyHTMLLiterals!(code, {
+          return <SourceDescription>await options.minifyHTMLLiterals!(code, {
             ...minifyOptions,
             fileName: id
           });
