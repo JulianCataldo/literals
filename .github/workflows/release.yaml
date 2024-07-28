@@ -48,13 +48,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      # - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-      #   persist-credentials: false
-      # env:
-      #   GIT_COMMITTER_NAME: "GitHub Actions Shell"
-      #   GIT_AUTHOR_NAME: "GitHub Actions Shell"
-      #   EMAIL: "github-actions[bot]@users.noreply.github.com"
-
       # MARK: Setup Node env.
 
       - name: Setup PNPM
@@ -95,9 +88,9 @@ jobs:
       # - name: Setup Turbo cache
       #   uses: dtinth/setup-github-actions-caching-for-turbo@a0e976d970c2a94366a26984efcef3030e2c0115 # v1.2.0
 
-      # - name: Build all packages
-      #   shell: bash
-      #   run: pnpm build
+      - name: Build all packages
+        shell: bash
+        run: pnpm run build
 
       # MARK: Lint/Checks post-build
 
@@ -105,7 +98,7 @@ jobs:
       #   shell: bash
       #   run: pnpm run lint:js
 
-      # MARK:Tests
+      # MARK: Tests
 
       - name: Tests — Unit
         shell: bash
@@ -121,48 +114,45 @@ jobs:
 
       # MARK: Publish packages
 
-      # - name: Create temporary NPM identity # + Enable Provenance
-      #   env:
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      #   # run: |
-      #   #   echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN\nprovenance=true" > .npmrc
-      #   #   echo "provenance=true" > .npmrc
-      #   run: |
-      #     echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+      - name: Create temporary NPM identity # + Enable Provenance
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
 
-      # - name: Git user configuration
-      #   run: |
-      #     git config --global user.name "${{ github.actor }}"
-      #     git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+      - name: Git user configuration
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
       # # MARK: [MAIN]
-      # - name: 'Lerna publish [main]'
-      #   # if: github.ref == 'refs/heads/to-integrate'
-      #   if: github.ref == 'refs/heads/main'
-      #   # https://github.com/lerna/lerna/issues/2532
-      #   id: graduateRelease
-      #   continue-on-error: true
-      #   env:
-      #     GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-      #     NPM_TOKEN: '${{ secrets.NPM_TOKEN }}' # Not really needed (already global)
-      #   run: |
-      #     pnpm lerna publish --conventional-commits --exact --conventional-graduate --create-release=github --yes
+      - name: 'Lerna publish [main]'
+        # if: github.ref == 'refs/heads/to-integrate'
+        if: github.ref == 'refs/heads/main'
+        # https://github.com/lerna/lerna/issues/2532
+        id: graduateRelease
+        continue-on-error: true
+        env:
+          GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          NPM_TOKEN: '${{ secrets.NPM_TOKEN }}' # Not really needed (already global)
+        run: |
+          pnpm lerna publish --conventional-commits --exact --conventional-graduate --create-release=github --yes
 
-      # - name: Bump Prod Version Fallback
-      #   if: ${{ always() && steps.graduateRelease.outcome == 'failure'  }}
-      #   env:
-      #     GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-      #     NPM_TOKEN: '${{ secrets.NPM_TOKEN }}'
-      #   run: |
-      #     echo Falling back to non-graduate release due to https://github.com/lerna/lerna/issues/2532
-      #     git stash
-      #     pnpm lerna publish --conventional-commits --exact --create-release=github --yes
+      - name: Bump Prod Version Fallback
+        if: ${{ always() && steps.graduateRelease.outcome == 'failure'  }}
+        env:
+          GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          NPM_TOKEN: '${{ secrets.NPM_TOKEN }}'
+        run: |
+          echo Falling back to non-graduate release due to https://github.com/lerna/lerna/issues/2532
+          git stash
+          pnpm lerna publish --conventional-commits --exact --create-release=github --yes
 
       # # MARK: [NEXT]
-      # - name: 'Lerna publish [next]'
-      #   if: github.ref == 'refs/heads/next'
-      #   # if: github.ref == 'refs/heads/to-integrate-next'
-      #   env:
-      #     NPM_TOKEN: '${{ secrets.NPM_TOKEN }}' # Not really needed (already global)
-      #   run: |
-      #     pnpm lerna publish --conventional-commits --exact --conventional-prerelease --canary --dist-tag=next --preid=next --yes
+      - name: 'Lerna publish [next]'
+        if: github.ref == 'refs/heads/next'
+        # if: github.ref == 'refs/heads/to-integrate-next'
+        env:
+          NPM_TOKEN: '${{ secrets.NPM_TOKEN }}' # Not really needed (already global)
+        run: |
+          pnpm lerna publish --conventional-commits --exact --conventional-prerelease --canary --dist-tag=next --preid=next --yes
