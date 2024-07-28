@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
+  "version": "independent",
+  "npmClient": "pnpm",
+
+  "command": {
+    "publish": {
+      "cleanupTempFiles": true,
+      "removePackageFields": ["devDependencies", "scripts"],
+
+      "message": "chore: publish release"
+    }
+  },
+
+  "packages": [
+    "./",
+    "./packages/parse-literals",
+    "./packages/minify-html-literals",
+    "./packages/rollup-plugin-minify-html-literals"
+  ]
+}

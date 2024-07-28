@@ -1,5 +1,5 @@
 {
-  "name": "minify-html-literals",
+  "name": "@literals/html-css-minifier",
   "version": "1.3.5",
   "description": "Minify HTML template literal strings",
   "main": "index.js",
@@ -29,7 +29,7 @@
     "lint": "prettier --write \"*.{js,ts,json,md}\" \"{src,test}/**/*\"",
     "precommit": "lint-staged",
     "release": "standard-version",
-    "prepublishOnly": "npm run build"
+    "// prepublishOnly": "npm run build"
   },
   "lint-staged": {
     "*.{js,ts,json,md}": [

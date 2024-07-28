@@ -2,8 +2,10 @@
   "name": "root",
   "version": "0.0.0",
   "type": "module",
+  "private": true,
   "scripts": {
     "test": "pnpm -r test",
+    "build": "pnpm -r build",
     "lint": "prettier --write \"packages/*/{src,test}/**/*.{js,ts,json,md}\""
   },
   "keywords": [],
@@ -11,6 +13,9 @@
   "license": "ISC",
   "packageManager": "pnpm@9.5.0",
   "devDependencies": {
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "@lerna-lite/cli": "^3.7.1",
+    "@lerna-lite/list": "^3.7.1",
+    "@lerna-lite/publish": "^3.7.1"
   }
 }

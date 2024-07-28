@@ -1,5 +1,5 @@
 {
-  "name": "rollup-plugin-minify-html-literals",
+  "name": "@literals/rollup-plugin-html-css-minifier",
   "version": "1.2.6",
   "description": "Rollup plugin to minify HTML template literal strings",
   "main": "index.js",
@@ -30,7 +30,7 @@
     "lint": "prettier --write \"*.{js,ts,json,md}\" \"{src,test}/**/*\"",
     "precommit": "lint-staged",
     "release": "standard-version",
-    "prepublishOnly": "npm run build"
+    "// prepublishOnly": "npm run build"
   },
   "lint-staged": {
     "*.{js,ts,json,md}": [
