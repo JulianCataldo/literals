@@ -10,13 +10,13 @@ describe('strategy', () => {
       {
         text: '<h1>',
         start: 0,
-        end: 4
+        end: 4,
       },
       {
         text: '</h1>',
         start: 4,
-        end: 5
-      }
+        end: 5,
+      },
     ];
 
     describe('getPlaceholder()', () => {
@@ -32,8 +32,8 @@ describe('strategy', () => {
           {
             text: regularPlaceholder,
             start: 0,
-            end: regularPlaceholder.length
-          }
+            end: regularPlaceholder.length,
+          },
         ]);
 
         expect(oneUnderscore).not.to.equal(regularPlaceholder);
@@ -43,13 +43,13 @@ describe('strategy', () => {
           {
             text: regularPlaceholder,
             start: 0,
-            end: regularPlaceholder.length
+            end: regularPlaceholder.length,
           },
           {
             text: oneUnderscore,
             start: regularPlaceholder.length,
-            end: regularPlaceholder.length + oneUnderscore.length
-          }
+            end: regularPlaceholder.length + oneUnderscore.length,
+          },
         ]);
 
         expect(twoUnderscores).not.to.equal(regularPlaceholder);
@@ -78,14 +78,14 @@ describe('strategy', () => {
           </p>
           <div id="${placeholder}" class="with ${placeholder}"></div>
         `,
-          defaultMinifyOptions
+          defaultMinifyOptions,
         );
 
         console.log(minHtml);
 
         // 8 placeholders, 9 parts
         expect(
-          defaultStrategy.splitHTMLByPlaceholder(minHtml, placeholder)
+          defaultStrategy.splitHTMLByPlaceholder(minHtml, placeholder),
         ).to.have.lengthOf(9);
       });
     });
@@ -94,7 +94,7 @@ describe('strategy', () => {
       it('should join part texts by the placeholder', () => {
         const expected = '<h1>EXP</h1>';
         expect(defaultStrategy.combineHTMLStrings(parts, 'EXP')).to.equal(
-          expected
+          expected,
         );
       });
     });
@@ -111,7 +111,7 @@ describe('strategy', () => {
         `;
 
         expect(
-          await defaultStrategy.minifyHTML(html, defaultMinifyOptions)
+          await defaultStrategy.minifyHTML(html, defaultMinifyOptions),
         ).to.equal(await minify(html, defaultMinifyOptions));
       });
     });
@@ -120,7 +120,7 @@ describe('strategy', () => {
       it('should split string by the placeholder', () => {
         const expected = ['<h1>', '</h1>'];
         expect(
-          defaultStrategy.splitHTMLByPlaceholder('<h1>EXP</h1>', 'EXP')
+          defaultStrategy.splitHTMLByPlaceholder('<h1>EXP</h1>', 'EXP'),
         ).to.deep.equal(expected);
       });
 
@@ -128,7 +128,7 @@ describe('strategy', () => {
         const expected = ['<h1>', '</h1><button onclick="', '"></button>'];
         const html = `<h1>EXP;</h1><button onclick="EXP"></button>`;
         expect(
-          defaultStrategy.splitHTMLByPlaceholder(html, 'EXP;')
+          defaultStrategy.splitHTMLByPlaceholder(html, 'EXP;'),
         ).to.deep.equal(expected);
       });
     });

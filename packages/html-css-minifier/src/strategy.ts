@@ -3,7 +3,7 @@
 import CleanCSS from 'clean-css';
 import {
   OptimizationLevel,
-  optimizationLevelFrom
+  optimizationLevelFrom,
   // FIXME:
   // @ts-expect-error
 } from 'clean-css/lib/options/optimization-level.js';
@@ -89,7 +89,7 @@ export const defaultMinifyOptions: HTMLOptions = {
   removeEmptyAttributes: true,
   removeScriptTypeAttributes: true,
   removeStyleLinkTypeAttributes: true,
-  useShortDoctype: true
+  useShortDoctype: true,
 };
 
 /**
@@ -104,14 +104,14 @@ export const defaultStrategy: Strategy<HTMLOptions, CleanCSS.Options> = {
     // accounts for the missing semicolon.
     const suffix = '();';
     let placeholder = '@TEMPLATE_EXPRESSION';
-    while (parts.some(part => part.text.includes(placeholder + suffix))) {
+    while (parts.some((part) => part.text.includes(placeholder + suffix))) {
       placeholder += '_';
     }
 
     return placeholder + suffix;
   },
   combineHTMLStrings(parts, placeholder) {
-    return parts.map(part => part.text).join(placeholder);
+    return parts.map((part) => part.text).join(placeholder);
   },
 
   async minifyHTML(html, options = {}) {
@@ -138,7 +138,7 @@ export const defaultStrategy: Strategy<HTMLOptions, CleanCSS.Options> = {
 
     let result = await minify(html, {
       ...options,
-      minifyCSS: adjustedMinifyCSSOptions
+      minifyCSS: adjustedMinifyCSSOptions,
     });
 
     if (options.collapseWhitespace) {
@@ -198,7 +198,7 @@ export const defaultStrategy: Strategy<HTMLOptions, CleanCSS.Options> = {
     }
 
     return parts;
-  }
+  },
 };
 
 export function adjustMinifyCSSOptions(options: CleanCSS.Options = {}) {
@@ -221,7 +221,7 @@ export function adjustMinifyCSSOptions(options: CleanCSS.Options = {}) {
 
   return {
     ...options,
-    level
+    level,
   };
 }
 
@@ -238,7 +238,7 @@ function fixCleanCssTidySelectors(original: string, result: string) {
     const parametersWithoutSpaces = parameters.replace(/\s/g, '');
     const resultPseudoClass = pseudoClass.replace(
       parameters,
-      parametersWithoutSpaces
+      parametersWithoutSpaces,
     );
     const resultStartIndex = result.indexOf(resultPseudoClass);
     if (resultStartIndex < 0) {

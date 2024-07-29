@@ -5,13 +5,13 @@ import {
   defaultShouldMinify,
   defaultShouldMinifyCSS,
   defaultValidation,
-  minifyHTMLLiterals
+  minifyHTMLLiterals,
 } from '../minifyHTMLLiterals.js';
 import {
   adjustMinifyCSSOptions,
   defaultMinifyCSSOptions,
   defaultMinifyOptions,
-  defaultStrategy
+  defaultStrategy,
 } from '../strategy.js';
 import { describe, it } from 'node:test';
 
@@ -26,7 +26,7 @@ describe('exports', () => {
       defaultShouldMinifyCSS,
       defaultStrategy,
       defaultValidation,
-      minifyHTMLLiterals
+      minifyHTMLLiterals,
     });
   });
 });
