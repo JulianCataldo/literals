@@ -18,6 +18,9 @@
   },
   "license": "MIT",
   "author": "Liz Mitchell <asyncliz@gmail.com>",
+  "maintainers": [
+    "Julian Cataldo <jcprofree@gmail.com>"
+  ],
   "type": "module",
   "exports": {
     ".": "./dist/index.js"

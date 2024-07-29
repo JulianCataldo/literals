@@ -4,7 +4,7 @@
   "private": true,
   "keywords": [],
   "license": "ISC",
-  "author": "",
+  "author": "Julian Cataldo <jcprofree@gmail.com>",
   "type": "module",
   "scripts": {
     "dupped-code": "jscpd --ignore '**/node_modules,**/*.md,**/*.html,**/dist,**/*.json'",
