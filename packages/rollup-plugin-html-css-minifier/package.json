@@ -2,14 +2,6 @@
   "name": "@literals/rollup-plugin-html-css-minifier",
   "version": "2.0.2",
   "description": "Rollup plugin to minify HTML template literal strings",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": "./dist/index.js"
-  },
-  "author": "Liz Mitchell <asyncliz@gmail.com>",
-  "license": "MIT",
-  "type": "module",
   "keywords": [
     "rollup-plugin",
     "minify",
@@ -20,19 +12,27 @@
     "tagged",
     "lit-html"
   ],
-  "files": [
-    "dist",
-    "!dist/test"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/JulianCataldo/literals",
     "directory": "./packages/rollup-plugin-html-css-minifier"
   },
+  "license": "MIT",
+  "author": "Liz Mitchell <asyncliz@gmail.com>",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "!dist/test"
+  ],
   "scripts": {
-    "clean": "rimraf \"{dist,coverage}\"",
     "prebuild": "node --run clean",
     "build": "tsc",
+    "clean": "rimraf \"{dist,coverage}\"",
     "pretest": "node --run build",
     "test": "c8 node --enable-source-maps --test dist/test/*.js"
   },
@@ -40,9 +40,6 @@
     "@literals/html-css-minifier": "workspace:*",
     "@rollup/pluginutils": "^5.1.0",
     "rollup-pluginutils": "^2.8.2"
-  },
-  "peerDependencies": {
-    "rollup": "^0.65.2 || ^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0 "
   },
   "devDependencies": {
     "@types/chai": "^4.3.16",
@@ -54,6 +51,9 @@
     "rollup": "^4.19.1",
     "sinon": "^6.3.5",
     "typescript": "^5.5.4"
+  },
+  "peerDependencies": {
+    "rollup": "^0.65.2 || ^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0 "
   },
   "publishConfig": {
     "access": "public",

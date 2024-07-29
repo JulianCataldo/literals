@@ -2,14 +2,6 @@
   "name": "@literals/parser",
   "version": "1.2.5",
   "description": "Parse template literals from code",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": "./dist/index.js"
-  },
-  "author": "Liz Mitchell <asyncliz@gmail.com>",
-  "license": "MIT",
-  "type": "module",
   "keywords": [
     "parse",
     "extract",
@@ -19,19 +11,27 @@
     "tagged",
     "lit-html"
   ],
-  "files": [
-    "dist",
-    "!dist/test"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/JulianCataldo/literals",
     "directory": "./packages/parser"
   },
+  "license": "MIT",
+  "author": "Liz Mitchell <asyncliz@gmail.com>",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "!dist/test"
+  ],
   "scripts": {
-    "clean": "rimraf \"{dist,coverage}\"",
     "prebuild": "node --run clean",
     "build": "tsc",
+    "clean": "rimraf \"{dist,coverage}\"",
     "pretest": "node --run build",
     "test": "c8 node --enable-source-maps --test dist/test/*.js"
   },
@@ -42,8 +42,8 @@
     "@types/chai": "^4.1.4",
     "@types/node": "^22.0.0",
     "@types/sinon": "^5.0.1",
-    "chai": "^4.1.2",
     "c8": "^10.1.2",
+    "chai": "^4.1.2",
     "rimraf": "^2.6.2",
     "sinon": "^6.3.5"
   },

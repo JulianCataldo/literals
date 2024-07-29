@@ -66,43 +66,43 @@ jobs:
         shell: bash
         run: pnpm install --frozen-lockfile
 
-      # - name: 'Verify the integrity of provenance attestations and registry signatures for installed dependencies'
-      #   run: 'pnpm audit signatures'
+      - name: 'Verify the integrity of provenance attestations and registry signatures for installed dependencies'
+        run: 'pnpm audit signatures'
 
       # MARK: Lint/Checks pre-build
 
-      # - name: Lint last commit — Commitlint
-      #   shell: bash
-      #   run: pnpm run lint:commit
+      - name: Lint last commit — Commitlint
+        shell: bash
+        run: pnpm run lint:commit
 
       # - name: Lint CSS — Stylelint
       #   shell: bash
       #   run: pnpm run lint:css
 
-      # - name: Check all formatting — Prettier
-      #   shell: bash
-      #   run: pnpm run format
-
-      # MARK: Lint/Checks post-build
-
-      # - name: Lint JS/TS — ESLint
-      #   shell: bash
-      #   run: pnpm run lint:js
+      - name: Check all formatting — Prettier
+        shell: bash
+        run: pnpm run format
 
       # MARK: Build packages
 
       # - name: Setup Turbo cache
       #   uses: dtinth/setup-github-actions-caching-for-turbo@a0e976d970c2a94366a26984efcef3030e2c0115 # v1.2.0
 
-      - name: Build all packages
+      - name: Transpile all packages with TypeScript
         shell: bash
-        run: pnpm run build
+        run: pnpm run ts:build
+
+      # MARK: Lint/Checks post-build
+
+      # - name: Lint JS/TS — ESLint
+      #   shell: bash
+      #   run: pnpm run lint:es
 
       # MARK: Tests
 
       - name: Tests — Unit
         shell: bash
-        run: pnpm -r run test
+        run: pnpm run test:unit
 
       # - name: Tests — Integration
       #   shell: bash
@@ -121,7 +121,7 @@ jobs:
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-      # # MARK: [MAIN]
+      # MARK: [MAIN]
       - name: 'Lerna publish [main]'
         # if: github.ref == 'refs/heads/to-integrate'
         if: github.ref == 'refs/heads/main'
@@ -144,7 +144,7 @@ jobs:
           git stash
           pnpm lerna publish --conventional-commits --exact --create-release=github --yes
 
-      # # MARK: [NEXT]
+      # MARK: [NEXT]
       - name: 'Lerna publish [next]'
         if: github.ref == 'refs/heads/next'
         # if: github.ref == 'refs/heads/to-integrate-next'
