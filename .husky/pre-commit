@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+# npx lint-staged
+
+# NOTE: Disabled for now, maybe we should put it in pre-push?
+# pnpm test
