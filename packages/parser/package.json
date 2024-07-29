@@ -15,6 +15,13 @@
     "tagged",
     "lit-html"
   ],
+  "files": [
+    "**/*",
+    "!**/*.js",
+    "!**/*.map",
+    "!**/*.d.ts",
+    "!**/*.md"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/JulianCataldo/literals",

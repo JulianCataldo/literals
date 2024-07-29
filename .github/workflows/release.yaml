@@ -83,15 +83,6 @@ jobs:
       #   shell: bash
       #   run: pnpm run format
 
-      # MARK: Build packages
-
-      # - name: Setup Turbo cache
-      #   uses: dtinth/setup-github-actions-caching-for-turbo@a0e976d970c2a94366a26984efcef3030e2c0115 # v1.2.0
-
-      - name: Build all packages
-        shell: bash
-        run: pnpm run build
-
       # MARK: Lint/Checks post-build
 
       # - name: Lint JS/TS — ESLint
@@ -103,6 +94,15 @@ jobs:
       - name: Tests — Unit
         shell: bash
         run: pnpm -r run test
+
+      # MARK: Build packages
+
+      # - name: Setup Turbo cache
+      #   uses: dtinth/setup-github-actions-caching-for-turbo@a0e976d970c2a94366a26984efcef3030e2c0115 # v1.2.0
+
+      - name: Build all packages
+        shell: bash
+        run: pnpm run build
 
       # - name: Coveralls.io
       #   shell: bash
