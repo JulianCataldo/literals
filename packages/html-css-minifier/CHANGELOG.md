@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/JulianCataldo/literals/compare/@literals/html-css-minifier@2.0.0...@literals/html-css-minifier@2.0.1) (2024-07-29)
+
+### Bug Fixes
+
+* missing dist files, use package.json file includes instead of npmignore, reorder ci ([ee10c4f](https://github.com/JulianCataldo/literals/commit/ee10c4fc71759bbe48534673ca06bcfd82be3871))
+
 # [2.0.0](https://github.com/JulianCataldo/literals/compare/@literals/html-css-minifier@1.3.6...@literals/html-css-minifier@2.0.0) (2024-07-28)
 
 * fix!: replace `html-minifier` with `html-minifier-terser` ([38a5e19](https://github.com/JulianCataldo/literals/commit/38a5e19d9a250d2eb39518b741450a6b2d0b5785))

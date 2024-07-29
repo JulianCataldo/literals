@@ -1,6 +1,6 @@
 {
   "name": "@literals/html-css-minifier",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Minify HTML template literal strings",
   "main": "index.js",
   "types": "index.d.ts",
@@ -64,7 +64,7 @@
     "all": true
   },
   "dependencies": {
-    "@literals/parser": "workspace:1.2.3",
+    "@literals/parser": "workspace:1.2.4",
     "@types/html-minifier-terser": "^7.0.2",
     "clean-css": "4.2.1",
     "html-minifier-terser": "^7.2.0",
