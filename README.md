@@ -22,6 +22,7 @@ Non-exhaustive list of what has been done from the initial repos (3 projects):
 - Setup a CI/CD with Lerna-lite backed releases
 - Pin problematic dependencies before a full upgrade
 - Add demos
+- Security: added NPM package provenance and PNPM signatures audit in CI
 
 While keeping all tests greens (no release if CI is unhappy).
 

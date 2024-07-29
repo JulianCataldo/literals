@@ -1,21 +1,19 @@
 {
-  "name": "@literals/demos--vite-lit-spa",
+  "name": "@literals/demos--node",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "tsx --watch src/app.ts"
   },
   "dependencies": {
-    "lit": "^3.1.4",
     "@literals/html-css-minifier": "link:../../packages/html-css-minifier",
-    "@literals/parser": "link:../../packages/parser"
+    "@literals/parser": "link:../../packages/parser",
+    "lit": "^3.1.4"
   },
   "devDependencies": {
     "@literals/rollup-plugin-html-css-minifier": "link:../../packages/rollup-plugin-html-css-minifier",
-    "typescript": "^5.5.4",
-    "vite": "^5.3.5"
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.4"
   }
 }

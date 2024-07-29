@@ -1,22 +1,27 @@
-# minify-html-literals
+# @literals/html-css-minifier
 
 _Minify HTML markup inside JavaScript template literal strings._
 
-[![npm](https://img.shields.io/npm/v/minify-html-literals.svg)](https://www.npmjs.com/package/minify-html-literals)
-[![Build Status](https://travis-ci.com/asyncLiz/minify-html-literals.svg?branch=master)](https://travis-ci.com/asyncLiz/minify-html-literals)
-[![Coverage Status](https://coveralls.io/repos/github/asyncLiz/minify-html-literals/badge.svg?branch=master)](https://coveralls.io/github/asyncLiz/minify-html-literals?branch=master)
+[![npm](https://img.shields.io/npm/v/%40literals%2Fhtml-css-minifier.svg)](https://www.npmjs.com/package/%40literals%2Fhtml-css-minifier)
+
+<!-- [![Build Status](https://travis-ci.com/asyncLiz/minify-html-literals.svg?branch=master)](https://travis-ci.com/asyncLiz/minify-html-literals) -->
+<!-- [![Coverage Status](https://coveralls.io/repos/github/asyncLiz/minify-html-literals/badge.svg?branch=master)](https://coveralls.io/github/asyncLiz/minify-html-literals?branch=master) -->
 
 ## Why?
 
-Template literals are often used in JavaScript to write HTML and CSS markup (ex. [lit-html](https://www.npmjs.com/package/lit-html)). This library allows a developer to minify markup that is normally ignored by JavaScript minifiers.
+Template literals are often used in JavaScript to write HTML and CSS markup (ex.
+[lit-html](https://www.npmjs.com/package/lit-html)). This library allows a
+developer to minify markup that is normally ignored by JavaScript minifiers.
 
 ## Usage
 
-```js
-import { minifyHTMLLiterals } from 'minify-html-literals';
-// const minifyHTMLLiterals = require('minify-html-literals').minifyHTMLLiterals
+> [!IMPORTANT]  
+> All `@literals/*` packages are published as **ESM-only**!
 
-const result = minifyHTMLLiterals(
+```js
+import { minifyHTMLLiterals } from '@literals/html-css-minifier';
+
+const result = await minifyHTMLLiterals(
   `function render(title, items) {
     return html\`
       <style>
@@ -35,18 +40,18 @@ const result = minifyHTMLLiterals(
     \`;
   }`,
   {
-    fileName: 'render.js'
-  }
+    fileName: 'render.js',
+  },
 );
 
-console.log(result.code);
+console.log(result?.code);
 //  function render(title, items) {
 //    return html`<style>.heading{color:#00f}</style><h1 class=heading>${title}</h1><ul>${items.map(item => {
 //          return getHTML()`<li>${item}</li>`;
 //        })}</ul>`;
 //  }
 
-console.log(result.map);
+console.log(result?.map);
 // {
 //   "version": 3,
 //   "file": "render.js.map",
@@ -59,7 +64,8 @@ console.log(result.map);
 
 ### ES5 Transpiling Warning
 
-Be sure to minify template literals _before_ transpiling to ES5. Otherwise, the API will not be able to find any template literal (`` `${}` ``) strings.
+Be sure to minify template literals _before_ transpiling to ES5. Otherwise, the
+API will not be able to find any template literal (`` `${}` ``) strings.
 
 ## Supported Source Syntax
 
@@ -82,8 +88,12 @@ The following options are common to typical use cases.
 
 ### Advanced
 
-All aspects of the API are exposed and customizable. The following options will not typically be used unless you need to change how a certain aspect of the API handles a use case.
+All aspects of the API are exposed and customizable. The following options will
+not typically be used unless you need to change how a certain aspect of the API
+handles a use case.
 
+<!-- CAUTION: It gets trashed with Prettier, IDK why yet -->
+<!-- prettier-ignore -->
 | Property                | Type                                                                      | Default                                                        | Description                                                                                                                                                |
 | ----------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `generateSourceMap?`    | boolean or `(ms: MagicString, fileName: string) => SourceMap | undefined` | `defaultGenerateSourceMap`                                     | Set to `false` to disable source maps, or a custom function to control how source maps are generated from a `MagicString` instance.                        |
@@ -97,12 +107,16 @@ All aspects of the API are exposed and customizable. The following options will 
 
 ### Minify non-tagged templates
 
-> This is particularly useful for libraries that define templates without using tags, such as Polymer's `<dom-module>`.
+> This is particularly useful for libraries that define templates without using
+> tags, such as Polymer's `<dom-module>`.
 
 ```js
-import { minifyHTMLLiterals, defaultShouldMinify } from 'minify-html-literals';
+import {
+  minifyHTMLLiterals,
+  defaultShouldMinify,
+} from '@literals/html-css-minifier';
 
-minifyHTMLLiterals(
+await minifyHTMLLiterals(
   `
     template.innerHTML = \`
       <dom-module id="custom-styles">
@@ -119,41 +133,44 @@ minifyHTMLLiterals(
     shouldMinify(template) {
       return (
         defaultShouldMinify(template) ||
-        template.parts.some(part => {
+        template.parts.some((part) => {
           return part.text.includes('<dom-module>');
         })
       );
-    }
-  }
+    },
+  },
 );
 ```
 
 ### Do not minify CSS
 
 ```js
-import { minifyHTMLLiterals, defaultMinifyOptions } from 'minify-html-literals';
+import {
+  minifyHTMLLiterals,
+  defaultMinifyOptions,
+} from '@literals/html-css-minifier';
 
-minifyHTMLLiterals(source, {
+await minifyHTMLLiterals(source, {
   fileName: 'render.js',
   minifyOptions: {
     ...defaultMinifyOptions,
-    minifyCSS: false
+    minifyCSS: false,
   },
-  shouldMinifyCSS: () => false
+  shouldMinifyCSS: () => false,
 });
 ```
 
 ### Modify generated SourceMap
 
 ```js
-minifyHTMLLiterals(source, {
+await minifyHTMLLiterals(source, {
   fileName: 'render.js',
   generateSourceMap(ms, fileName) {
     return ms.generateMap({
       file: `${fileName}-converted.map`, // change file name
       source: fileName,
-      includeContent: true // include source contents
+      includeContent: true, // include source contents
     });
-  }
+  },
 });
 ```
