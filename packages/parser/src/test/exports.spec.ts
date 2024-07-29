@@ -1,7 +1,8 @@
 import { expect } from 'chai';
-import * as pl from '../index';
-import { parseLiterals } from '../src/parseLiterals';
-import typescript from '../src/strategies/typescript';
+import * as pl from '../index.js';
+import { parseLiterals } from '../parseLiterals.js';
+import typescript from '../strategies/typescript.js';
+import { describe, it } from 'node:test';
 
 describe('exports', () => {
   it('should export parseLiterals() function', () => {

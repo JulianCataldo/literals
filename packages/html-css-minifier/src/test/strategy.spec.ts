@@ -1,7 +1,8 @@
 import { expect } from 'chai';
 import { minify } from 'html-minifier-terser';
-import { defaultMinifyOptions, defaultStrategy } from '../src/strategy';
+import { defaultMinifyOptions, defaultStrategy } from '../strategy.js';
 import { TemplatePart } from '@literals/parser';
+import { describe, it } from 'node:test';
 
 describe('strategy', () => {
   describe('default', () => {

@@ -6,7 +6,7 @@ import {
   TemplatePart,
   parseLiterals
 } from '@literals/parser';
-import { SinonSpy, spy } from 'sinon';
+import sinon, { type SinonSpy } from 'sinon';
 import {
   SourceMap,
   defaultGenerateSourceMap,
@@ -14,8 +14,11 @@ import {
   defaultShouldMinifyCSS,
   defaultValidation,
   minifyHTMLLiterals
-} from '../src/minifyHTMLLiterals';
-import { defaultMinifyOptions, defaultStrategy } from '../src/strategy';
+} from '../minifyHTMLLiterals.js';
+import { defaultMinifyOptions, defaultStrategy } from '../strategy.js';
+import { afterEach, beforeEach, describe, it } from 'node:test';
+
+const { spy } = sinon;
 
 class MagicStringLike {
   generateMap(options?: Partial<SourceMapOptions>): SourceMap {
