@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/JulianCataldo/literals/compare/@literals/parser@1.2.5...@literals/parser@2.0.0) (2024-07-29)
+
+* docs!: update links, format, add node demo, esm note ([3e1d386](https://github.com/JulianCataldo/literals/commit/3e1d3862e7929d1e42b0e54c8f2aa65d7f76c883))
+
+### BREAKING CHANGES
+
+* Switching to ESM means that some CJS setups can
+break
+
 ## [1.2.5](https://github.com/JulianCataldo/literals/compare/@literals/parser@1.2.4...@literals/parser@1.2.5) (2024-07-29)
 
 ### Bug Fixes
