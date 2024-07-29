@@ -1,0 +1,14 @@
+# # TODO: Add more supported extensions
+# '*.{js,ts,mts,cjs,mjs,jsx,tsx,json,yaml,sh}':
+#   - prettier --write
+
+# '*.{js,ts,mts,cjs,mjs,jsx,tsx}':
+#   - eslint --fix
+
+#
+# "lint-staged": {
+#   "*.{js,ts,json,md}": [
+#     "prettier --write",
+#     "git add"
+#   ]
+# },

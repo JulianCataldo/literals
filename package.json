@@ -16,6 +16,7 @@
     "@lerna-lite/cli": "^3.7.1",
     "@lerna-lite/list": "^3.7.1",
     "@lerna-lite/publish": "^3.7.1",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "husky": "^9.1.3"
   }
 }
