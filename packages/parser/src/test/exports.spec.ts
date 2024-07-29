@@ -11,7 +11,7 @@ describe('exports', () => {
 
   it('should export strategies map', () => {
     expect(pl.strategies).to.deep.equal({
-      typescript
+      typescript,
     });
   });
 });

@@ -15,7 +15,7 @@ describe('minify-html-literals', () => {
   beforeEach(() => {
     context = {
       warn: spy(),
-      error: spy()
+      error: spy(),
     };
   });
 
@@ -33,7 +33,7 @@ describe('minify-html-literals', () => {
     const minifySpy = spy(options, 'minifyHTMLLiterals');
     plugin.transform.apply(context as unknown as TransformPluginContext, [
       'return',
-      fileName
+      fileName,
     ]);
     expect(minifySpy.called).to.be.true;
   });
@@ -42,16 +42,16 @@ describe('minify-html-literals', () => {
     const options: Options = {
       options: {
         minifyOptions: {
-          minifyCSS: false
-        }
-      }
+          minifyCSS: false,
+        },
+      },
     };
 
     const plugin = literalsHtmlCssMinifier(options);
     const minifySpy = spy(options, 'minifyHTMLLiterals');
     plugin.transform.apply(context as unknown as TransformPluginContext, [
       'return',
-      fileName
+      fileName,
     ]);
     expect(
       minifySpy.calledWithMatch(
@@ -59,10 +59,10 @@ describe('minify-html-literals', () => {
         match({
           fileName,
           minifyOptions: {
-            minifyCSS: false
-          }
-        })
-      )
+            minifyCSS: false,
+          },
+        }),
+      ),
     ).to.be.true;
   });
 
@@ -72,12 +72,12 @@ describe('minify-html-literals', () => {
     });
 
     const plugin = literalsHtmlCssMinifier({
-      minifyHTMLLiterals: customMinify
+      minifyHTMLLiterals: customMinify,
     });
 
     plugin.transform.apply(context as unknown as TransformPluginContext, [
       'return',
-      fileName
+      fileName,
     ]);
     expect(customMinify.called).to.be.true;
   });
@@ -86,12 +86,12 @@ describe('minify-html-literals', () => {
     const plugin = literalsHtmlCssMinifier({
       minifyHTMLLiterals: () => {
         throw new Error('failed');
-      }
+      },
     });
 
     plugin.transform.apply(context as unknown as TransformPluginContext, [
       'return',
-      fileName
+      fileName,
     ]);
     expect(context.warn.calledWith('failed')).to.be.true;
     expect(context.error.called).to.be.false;
@@ -102,12 +102,12 @@ describe('minify-html-literals', () => {
       minifyHTMLLiterals: () => {
         throw new Error('failed');
       },
-      failOnError: true
+      failOnError: true,
     });
 
     plugin.transform.apply(context as unknown as TransformPluginContext, [
       'return',
-      fileName
+      fileName,
     ]);
     expect(context.error.calledWith('failed')).to.be.true;
     expect(context.warn.called).to.be.false;
@@ -119,7 +119,7 @@ describe('minify-html-literals', () => {
     expect(options.filter).to.be.a('function');
     expect(options.filter!(fileName)).to.be.true;
     options = {
-      include: '*.ts'
+      include: '*.ts',
     };
 
     literalsHtmlCssMinifier(options);
@@ -130,13 +130,13 @@ describe('minify-html-literals', () => {
 
   it('should allow custom filter', () => {
     const options = {
-      filter: spy(() => false)
+      filter: spy(() => false),
     };
 
     const plugin = literalsHtmlCssMinifier(options);
     plugin.transform.apply(context as unknown as TransformPluginContext, [
       'return',
-      fileName
+      fileName,
     ]);
     expect(options.filter.calledWith(fileName)).to.be.true;
   });

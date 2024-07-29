@@ -4,7 +4,7 @@ import {
   Plugin,
   SourceDescription,
   TransformHook,
-  PluginContext
+  PluginContext,
 } from 'rollup';
 import { createFilter } from '@rollup/pluginutils';
 
@@ -41,7 +41,7 @@ export interface Options {
 }
 
 export function literalsHtmlCssMinifier(
-  options: Options = {}
+  options: Options = {},
 ): Plugin & { transform: TransformHook } {
   if (!options.minifyHTMLLiterals) {
     options.minifyHTMLLiterals = minify.minifyHTMLLiterals;
@@ -60,7 +60,7 @@ export function literalsHtmlCssMinifier(
         try {
           return <SourceDescription>await options.minifyHTMLLiterals!(code, {
             ...minifyOptions,
-            fileName: id
+            fileName: id,
           });
         } catch (error) {
           // check if Error ese treat as string
@@ -74,6 +74,6 @@ export function literalsHtmlCssMinifier(
           }
         }
       }
-    }
+    },
   };
 }

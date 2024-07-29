@@ -20,6 +20,6 @@ declare module 'clean-css/lib/options/optimization-level' {
   }
 
   export function optimizationLevelFrom(
-    source: Options['level']
+    source: Options['level'],
   ): OptimizationLevelOptions;
 }

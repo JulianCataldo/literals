@@ -3,7 +3,7 @@ import {
   Template,
   TemplatePart,
   ParseLiteralsOptions,
-  parseLiterals
+  parseLiterals,
 } from '@literals/parser';
 import { Strategy, defaultMinifyOptions, defaultStrategy } from './strategy.js';
 
@@ -180,12 +180,12 @@ export interface Result {
  */
 export function defaultGenerateSourceMap(
   ms: MagicStringLike,
-  fileName: string
+  fileName: string,
 ) {
   return ms.generateMap({
     file: `${fileName}.map`,
     source: fileName,
-    hires: true
+    hires: true,
   });
 }
 
@@ -226,10 +226,10 @@ export const defaultValidation: Validation = {
   ensureHTMLPartsValid(parts, htmlParts) {
     if (parts.length !== htmlParts.length) {
       throw new Error(
-        'splitHTMLByPlaceholder() must return same number of strings as template parts'
+        'splitHTMLByPlaceholder() must return same number of strings as template parts',
       );
     }
-  }
+  },
 };
 
 /**
@@ -241,7 +241,7 @@ export const defaultValidation: Validation = {
  */
 export async function minifyHTMLLiterals(
   source: string,
-  options?: DefaultOptions
+  options?: DefaultOptions,
 ): Promise<Result | null>;
 /**
  * Minifies all HTML template literals in the provided source string.
@@ -252,15 +252,15 @@ export async function minifyHTMLLiterals(
  */
 export async function minifyHTMLLiterals<S extends Strategy>(
   source: string,
-  options?: CustomOptions<S>
+  options?: CustomOptions<S>,
 ): Promise<Result | null>;
 export async function minifyHTMLLiterals(
   source: string,
-  options: Options = {}
+  options: Options = {},
 ): Promise<Result | null> {
   options.minifyOptions = {
     ...defaultMinifyOptions,
-    ...(options.minifyOptions || {})
+    ...(options.minifyOptions || {}),
   };
 
   if (!options.MagicString) {
@@ -283,7 +283,7 @@ export async function minifyHTMLLiterals(
 
   options.parseLiteralsOptions = {
     ...{ fileName: options.fileName },
-    ...(options.parseLiteralsOptions || {})
+    ...(options.parseLiteralsOptions || {}),
   };
 
   const templates = options.parseLiterals(source, options.parseLiteralsOptions);
@@ -299,7 +299,7 @@ export async function minifyHTMLLiterals(
   // @ts-expect-error
   const ms = new options.MagicString(source);
   await Promise.all(
-    templates.map(async template => {
+    templates.map(async (template) => {
       const minifyHTML = shouldMinify(template);
       const minifyCSS = !!strategy.minifyCSS && shouldMinifyCSS(template);
       if (minifyHTML || minifyCSS) {
@@ -310,7 +310,7 @@ export async function minifyHTMLLiterals(
 
         const combined = strategy.combineHTMLStrings(
           template.parts,
-          placeholder
+          placeholder,
         );
         let min: string;
         if (minifyCSS) {
@@ -344,7 +344,7 @@ export async function minifyHTMLLiterals(
           }
         });
       }
-    })
+    }),
   );
 
   const sourceMin = ms.toString();
@@ -360,7 +360,7 @@ export async function minifyHTMLLiterals(
 
     return {
       map,
-      code: sourceMin
+      code: sourceMin,
     };
   }
 }

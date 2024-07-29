@@ -4,7 +4,7 @@ import {
   ParseLiteralsOptions,
   Template,
   TemplatePart,
-  parseLiterals
+  parseLiterals,
 } from '@literals/parser';
 import sinon, { type SinonSpy } from 'sinon';
 import {
@@ -13,7 +13,7 @@ import {
   defaultShouldMinify,
   defaultShouldMinifyCSS,
   defaultValidation,
-  minifyHTMLLiterals
+  minifyHTMLLiterals,
 } from '../minifyHTMLLiterals.js';
 import { defaultMinifyOptions, defaultStrategy } from '../strategy.js';
 import { afterEach, beforeEach, describe, it } from 'node:test';
@@ -34,7 +34,7 @@ class MagicStringLike {
       },
       toUrl() {
         return '';
-      }
+      },
     };
   }
 
@@ -240,7 +240,7 @@ describe('minifyHTMLLiterals()', () => {
 
   it('should minify "svg" tagged templates', async () => {
     const result = await minifyHTMLLiterals(SVG_SOURCE, {
-      fileName: 'test.js'
+      fileName: 'test.js',
     });
     expect(result).to.be.an('object');
     expect(result!.code).to.equal(SVG_SOURCE_MIN);
@@ -248,7 +248,7 @@ describe('minifyHTMLLiterals()', () => {
 
   it('should minify html with attribute placeholders that have no quotes and JS comments', async () => {
     const result = await minifyHTMLLiterals(COMMENT_SOURCE, {
-      fileName: 'test.js'
+      fileName: 'test.js',
     });
     expect(result).to.be.an('object');
     expect(result!.code).to.equal(COMMENT_SOURCE_MIN);
@@ -256,7 +256,7 @@ describe('minifyHTMLLiterals()', () => {
 
   it('should minify html tagged with a member expression ending in html', async () => {
     const result = await minifyHTMLLiterals(MEMBER_EXPRESSION_LITERAL_SOURCE, {
-      fileName: 'test.js'
+      fileName: 'test.js',
     });
     expect(result).to.be.an('object');
     expect(result!.code).to.equal(MEMBER_EXPRESSION_LITERAL_SOURCE_MIN);
@@ -264,7 +264,7 @@ describe('minifyHTMLLiterals()', () => {
 
   it('should minify multiline svg elements', async () => {
     const result = await minifyHTMLLiterals(SVG_MULTILINE_SOURCE, {
-      fileName: 'test.js'
+      fileName: 'test.js',
     });
     expect(result).to.be.an('object');
     expect(result!.code).to.equal(SVG_MULTILINE_SOURCE_MIN);
@@ -272,7 +272,7 @@ describe('minifyHTMLLiterals()', () => {
 
   it('should not remove spaces in ::part()', async () => {
     const result = await minifyHTMLLiterals(SHADOW_PARTS_SOURCE, {
-      fileName: 'test.js'
+      fileName: 'test.js',
     });
     expect(result).to.be.an('object');
     expect(result!.code).to.equal(SHADOW_PARTS_SOURCE_MIN);
@@ -280,7 +280,7 @@ describe('minifyHTMLLiterals()', () => {
 
   it('should return null if source is already minified', async () => {
     const result = await minifyHTMLLiterals(SOURCE_MIN, {
-      fileName: 'test.js'
+      fileName: 'test.js',
     });
     expect(result).to.be.null;
   });
@@ -309,10 +309,10 @@ describe('minifyHTMLLiterals()', () => {
       const parts = parseLiterals(SOURCE)[1].parts;
       const html = defaultStrategy.combineHTMLStrings(
         parts,
-        defaultStrategy.getPlaceholder(parts)
+        defaultStrategy.getPlaceholder(parts),
       );
       expect(
-        minifyHTMLSpy.lastCall.calledWithExactly(html, defaultMinifyOptions)
+        minifyHTMLSpy.lastCall.calledWithExactly(html, defaultMinifyOptions),
       ).to.be.true;
     });
 
@@ -322,13 +322,13 @@ describe('minifyHTMLLiterals()', () => {
       const parts = parseLiterals(SOURCE)[1].parts;
       const html = defaultStrategy.combineHTMLStrings(
         parts,
-        defaultStrategy.getPlaceholder(parts)
+        defaultStrategy.getPlaceholder(parts),
       );
       expect(
         minifyHTMLSpy.lastCall.calledWithExactly(html, {
           ...defaultMinifyOptions,
-          ...minifyOptions
-        })
+          ...minifyOptions,
+        }),
       ).to.be.true;
     });
 
@@ -339,7 +339,7 @@ describe('minifyHTMLLiterals()', () => {
         generateSourceMap(ms) {
           msUsed = ms;
           return undefined;
-        }
+        },
       });
 
       expect(msUsed).to.be.an.instanceof(MagicString);
@@ -353,7 +353,7 @@ describe('minifyHTMLLiterals()', () => {
         generateSourceMap(ms) {
           msUsed = ms;
           return undefined;
-        }
+        },
       });
 
       expect(msUsed).to.be.an.instanceof(MagicStringLike);
@@ -363,12 +363,12 @@ describe('minifyHTMLLiterals()', () => {
       const customParseLiterals = spy(
         (source: string, options?: ParseLiteralsOptions) => {
           return parseLiterals(source, options);
-        }
+        },
       );
 
       await minifyHTMLLiterals(SOURCE, {
         fileName: 'test.js',
-        parseLiterals: customParseLiterals
+        parseLiterals: customParseLiterals,
       });
       expect(customParseLiterals.called).to.be.true;
     });
@@ -380,7 +380,7 @@ describe('minifyHTMLLiterals()', () => {
 
       await minifyHTMLLiterals(SOURCE, {
         fileName: 'test.js',
-        shouldMinify: customShouldMinify
+        shouldMinify: customShouldMinify,
       });
       expect(customShouldMinify.called).to.be.true;
     });
@@ -393,19 +393,19 @@ describe('minifyHTMLLiterals()', () => {
         combineHTMLStrings: spy(
           (parts: TemplatePart[], placeholder: string) => {
             return defaultStrategy.combineHTMLStrings(parts, placeholder);
-          }
+          },
         ),
         minifyHTML: spy((html: string, options?: any) => {
           return defaultStrategy.minifyHTML(html, options);
         }),
         splitHTMLByPlaceholder: spy((html: string, placeholder: string) => {
           return defaultStrategy.splitHTMLByPlaceholder(html, placeholder);
-        })
+        }),
       };
 
       await minifyHTMLLiterals(SOURCE, {
         fileName: 'test.js',
-        strategy: customStrategy
+        strategy: customStrategy,
       });
       expect(customStrategy.getPlaceholder.called).to.be.true;
       expect(customStrategy.combineHTMLStrings.called).to.be.true;
@@ -423,8 +423,8 @@ describe('minifyHTMLLiterals()', () => {
             },
             combineHTMLStrings: defaultStrategy.combineHTMLStrings,
             minifyHTML: defaultStrategy.minifyHTML,
-            splitHTMLByPlaceholder: defaultStrategy.splitHTMLByPlaceholder
-          }
+            splitHTMLByPlaceholder: defaultStrategy.splitHTMLByPlaceholder,
+          },
         });
       }).to.throw;
 
@@ -437,8 +437,8 @@ describe('minifyHTMLLiterals()', () => {
             minifyHTML: defaultStrategy.minifyHTML,
             splitHTMLByPlaceholder: () => {
               return []; // cause an error
-            }
-          }
+            },
+          },
         });
       }).to.throw;
     });
@@ -453,9 +453,9 @@ describe('minifyHTMLLiterals()', () => {
             },
             combineHTMLStrings: defaultStrategy.combineHTMLStrings,
             minifyHTML: defaultStrategy.minifyHTML,
-            splitHTMLByPlaceholder: defaultStrategy.splitHTMLByPlaceholder
+            splitHTMLByPlaceholder: defaultStrategy.splitHTMLByPlaceholder,
           },
-          validate: false
+          validate: false,
         });
       }).not.to.throw;
     });
@@ -468,13 +468,13 @@ describe('minifyHTMLLiterals()', () => {
         ensureHTMLPartsValid: spy(
           (parts: TemplatePart[], htmlParts: string[]) => {
             return defaultValidation.ensureHTMLPartsValid(parts, htmlParts);
-          }
-        )
+          },
+        ),
       };
 
       await minifyHTMLLiterals(SOURCE, {
         fileName: 'test.js',
-        validate: customValidation
+        validate: customValidation,
       });
       expect(customValidation.ensurePlaceholderValid.called).to.be.true;
       expect(customValidation.ensureHTMLPartsValid.called).to.be.true;
@@ -483,7 +483,7 @@ describe('minifyHTMLLiterals()', () => {
     it('should allow disabling generateSourceMap', async () => {
       const result = await minifyHTMLLiterals(SOURCE, {
         fileName: 'test.js',
-        generateSourceMap: false
+        generateSourceMap: false,
       });
       expect(result).to.be.an('object');
       expect(result!.map).to.be.undefined;
@@ -493,12 +493,12 @@ describe('minifyHTMLLiterals()', () => {
       const customGenerateSourceMap = spy(
         (ms: MagicStringLike, fileName: string) => {
           return defaultGenerateSourceMap(ms, fileName);
-        }
+        },
       );
 
       await minifyHTMLLiterals(SOURCE, {
         fileName: 'test.js',
-        generateSourceMap: customGenerateSourceMap
+        generateSourceMap: customGenerateSourceMap,
       });
       expect(customGenerateSourceMap.called).to.be.true;
     });
@@ -513,8 +513,8 @@ describe('minifyHTMLLiterals()', () => {
         generateMapSpy.calledWith({
           file: 'test.js.map',
           source: 'test.js',
-          hires: true
-        })
+          hires: true,
+        }),
       ).to.be.true;
     });
   });
