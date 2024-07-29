@@ -9,12 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lit": "^3.1.4"
+    "lit": "^3.1.4",
+    "@literals/html-css-minifier": "link:../../packages/html-css-minifier",
+    "@literals/parser": "link:../../packages/parser"
   },
   "devDependencies": {
-    "@literals/html-css-minifier": "^2.0.2",
-    "@literals/parser": "^1.2.5",
-    "@literals/rollup-plugin-html-css-minifier": "^2.0.2",
+    "@literals/rollup-plugin-html-css-minifier": "link:../../packages/rollup-plugin-html-css-minifier",
     "typescript": "^5.5.4",
     "vite": "^5.3.5"
   }

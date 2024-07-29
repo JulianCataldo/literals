@@ -89,12 +89,6 @@ jobs:
       #   shell: bash
       #   run: pnpm run lint:js
 
-      # MARK: Tests
-
-      - name: Tests — Unit
-        shell: bash
-        run: pnpm -r run test
-
       # MARK: Build packages
 
       # - name: Setup Turbo cache
@@ -104,9 +98,11 @@ jobs:
         shell: bash
         run: pnpm run build
 
-      # - name: Coveralls.io
-      #   shell: bash
-      #   run: pnpm -r run coveralls
+      # MARK: Tests
+
+      - name: Tests — Unit
+        shell: bash
+        run: pnpm -r run test
 
       # - name: Tests — Integration
       #   shell: bash

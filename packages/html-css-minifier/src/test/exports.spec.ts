@@ -1,31 +1,32 @@
 import { expect } from 'chai';
-import * as min from '../index';
+import * as min from '../index.js';
 import {
   defaultGenerateSourceMap,
   defaultShouldMinify,
   defaultShouldMinifyCSS,
   defaultValidation,
   minifyHTMLLiterals
-} from '../src/minifyHTMLLiterals';
+} from '../minifyHTMLLiterals.js';
 import {
   adjustMinifyCSSOptions,
   defaultMinifyCSSOptions,
   defaultMinifyOptions,
   defaultStrategy
-} from '../src/strategy';
+} from '../strategy.js';
+import { describe, it } from 'node:test';
 
 describe('exports', () => {
   it('should export minifyHTMLLiterals() function and defaults', () => {
-    expect(min).to.deep.equal({
-      minifyHTMLLiterals,
+    expect({ ...min }).to.deep.equal({
+      adjustMinifyCSSOptions,
       defaultGenerateSourceMap,
+      defaultMinifyCSSOptions,
+      defaultMinifyOptions,
       defaultShouldMinify,
       defaultShouldMinifyCSS,
-      defaultValidation,
-      defaultMinifyOptions,
-      defaultMinifyCSSOptions,
       defaultStrategy,
-      adjustMinifyCSSOptions
+      defaultValidation,
+      minifyHTMLLiterals
     });
   });
 });

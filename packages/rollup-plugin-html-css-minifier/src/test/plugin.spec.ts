@@ -1,9 +1,13 @@
+import { describe, beforeEach, it } from 'node:test';
 import { expect } from 'chai';
 import * as minify from '@literals/html-css-minifier';
 import * as path from 'path';
 import { TransformPluginContext } from 'rollup';
-import { match, SinonSpy, spy } from 'sinon';
-import minifyHTML, { Options } from '../index';
+import sinon, { type SinonSpy } from 'sinon';
+import { literalsHtmlCssMinifier, Options } from '../index.js';
+
+// HACK: Before upgrading to modern ESM version
+const { match, spy } = sinon;
 
 describe('minify-html-literals', () => {
   const fileName = path.resolve('test.js');
@@ -16,7 +20,7 @@ describe('minify-html-literals', () => {
   });
 
   it('should return a plugin with a transform function', () => {
-    const plugin = minifyHTML();
+    const plugin = literalsHtmlCssMinifier();
     expect(plugin).to.be.an('object');
     expect(plugin.name).to.be.a('string');
     expect(plugin.transform).to.be.a('function');
@@ -24,7 +28,7 @@ describe('minify-html-literals', () => {
 
   it('should call minifyHTMLLiterals()', () => {
     const options: Options = {};
-    const plugin = minifyHTML(options);
+    const plugin = literalsHtmlCssMinifier(options);
     expect(options.minifyHTMLLiterals).to.be.a('function');
     const minifySpy = spy(options, 'minifyHTMLLiterals');
     plugin.transform.apply(context as unknown as TransformPluginContext, [
@@ -43,7 +47,7 @@ describe('minify-html-literals', () => {
       }
     };
 
-    const plugin = minifyHTML(options);
+    const plugin = literalsHtmlCssMinifier(options);
     const minifySpy = spy(options, 'minifyHTMLLiterals');
     plugin.transform.apply(context as unknown as TransformPluginContext, [
       'return',
@@ -67,7 +71,7 @@ describe('minify-html-literals', () => {
       return minify.minifyHTMLLiterals(source, options);
     });
 
-    const plugin = minifyHTML({
+    const plugin = literalsHtmlCssMinifier({
       minifyHTMLLiterals: customMinify
     });
 
@@ -79,7 +83,7 @@ describe('minify-html-literals', () => {
   });
 
   it('should warn errors', () => {
-    const plugin = minifyHTML({
+    const plugin = literalsHtmlCssMinifier({
       minifyHTMLLiterals: () => {
         throw new Error('failed');
       }
@@ -94,7 +98,7 @@ describe('minify-html-literals', () => {
   });
 
   it('should fail is failOnError is true', () => {
-    const plugin = minifyHTML({
+    const plugin = literalsHtmlCssMinifier({
       minifyHTMLLiterals: () => {
         throw new Error('failed');
       },
@@ -111,14 +115,14 @@ describe('minify-html-literals', () => {
 
   it('should filter ids', () => {
     let options: Options = {};
-    minifyHTML(options);
+    literalsHtmlCssMinifier(options);
     expect(options.filter).to.be.a('function');
     expect(options.filter!(fileName)).to.be.true;
     options = {
       include: '*.ts'
     };
 
-    minifyHTML(options);
+    literalsHtmlCssMinifier(options);
     expect(options.filter).to.be.a('function');
     expect(options.filter!(fileName)).to.be.false;
     expect(options.filter!(path.resolve('test.ts'))).to.be.true;
@@ -129,7 +133,7 @@ describe('minify-html-literals', () => {
       filter: spy(() => false)
     };
 
-    const plugin = minifyHTML(options);
+    const plugin = literalsHtmlCssMinifier(options);
     plugin.transform.apply(context as unknown as TransformPluginContext, [
       'return',
       fileName
