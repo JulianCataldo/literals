@@ -5,7 +5,7 @@ import {
   ParseLiteralsOptions,
   parseLiterals
 } from '@literals/parser';
-import { Strategy, defaultMinifyOptions, defaultStrategy } from './strategy';
+import { Strategy, defaultMinifyOptions, defaultStrategy } from './strategy.js';
 
 /**
  * Options for <code>minifyHTMLLiterals()</code>.
@@ -264,6 +264,8 @@ export async function minifyHTMLLiterals(
   };
 
   if (!options.MagicString) {
+    // FIXME:
+    // @ts-expect-error
     options.MagicString = MagicString;
   }
 
@@ -293,6 +295,8 @@ export async function minifyHTMLLiterals(
     validate = options.validate || defaultValidation;
   }
 
+  // FIXME:
+  // @ts-expect-error
   const ms = new options.MagicString(source);
   await Promise.all(
     templates.map(async template => {

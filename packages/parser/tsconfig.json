@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -10,7 +10,13 @@
     "noUnusedParameters": true,
     "sourceMap": true,
     "strict": true,
-    "target": "esnext"
+    "target": "ES2022",
+    "outDir": "dist",
+
+    "declarationMap": true,
+
+    "rootDir": "src"
   },
-  "include": ["index.ts", "src/**/*.ts"]
+
+  "include": ["src/**/*.ts"]
 }
