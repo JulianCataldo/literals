@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/JulianCataldo/literals/compare/@literals/html-css-minifier@2.0.1...@literals/html-css-minifier@2.0.2) (2024-07-29)
+
+### Bug Fixes
+
+* wrong package includes ([b1ecc1a](https://github.com/JulianCataldo/literals/commit/b1ecc1aceae9d0cc57fed8c1e153f35bfc7d3a34))
+
 ## [2.0.1](https://github.com/JulianCataldo/literals/compare/@literals/html-css-minifier@2.0.0...@literals/html-css-minifier@2.0.1) (2024-07-29)
 
 ### Bug Fixes

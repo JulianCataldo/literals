@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.5](https://github.com/JulianCataldo/literals/compare/@literals/parser@1.2.4...@literals/parser@1.2.5) (2024-07-29)
+
+### Bug Fixes
+
+* wrong package includes ([b1ecc1a](https://github.com/JulianCataldo/literals/commit/b1ecc1aceae9d0cc57fed8c1e153f35bfc7d3a34))
+
 ## [1.2.4](https://github.com/JulianCataldo/literals/compare/@literals/parser@1.2.3...@literals/parser@1.2.4) (2024-07-29)
 
 ### Bug Fixes
