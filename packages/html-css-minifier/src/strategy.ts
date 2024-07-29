@@ -1,10 +1,12 @@
-/// <reference types="./types/clean-css" />
+/// <reference types="./types/clean-css/index.d.ts" />
 // Reference needed for d.ts distribution files in rollup-plugin-minify-html-literals
-import * as CleanCSS from 'clean-css';
+import CleanCSS from 'clean-css';
 import {
   OptimizationLevel,
   optimizationLevelFrom
-} from 'clean-css/lib/options/optimization-level';
+  // FIXME:
+  // @ts-expect-error
+} from 'clean-css/lib/options/optimization-level.js';
 import { Options as HTMLOptions, minify } from 'html-minifier-terser';
 import { TemplatePart } from '@literals/parser';
 
@@ -205,6 +207,8 @@ export function adjustMinifyCSSOptions(options: CleanCSS.Options = {}) {
     typeof options.level === 'object' &&
     options.level[1] &&
     options.level[1].transform;
+  // FIXME:
+  // @ts-expect-error
   level[OptimizationLevel.One].transform = (property, value) => {
     if (value.startsWith('@TEMPLATE_EXPRESSION') && !value.endsWith(';')) {
       // The CSS minifier has removed the semicolon from the placeholder
