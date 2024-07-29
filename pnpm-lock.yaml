@@ -24,7 +24,7 @@ importers:
   packages/html-css-minifier:
     dependencies:
       '@literals/parser':
-        specifier: workspace:1.2.3
+        specifier: workspace:1.2.4
         version: link:../parser
       '@types/html-minifier-terser':
         specifier: ^7.0.2
@@ -145,7 +145,7 @@ importers:
   packages/rollup-plugin-html-css-minifier:
     dependencies:
       '@literals/html-css-minifier':
-        specifier: workspace:2.0.0
+        specifier: workspace:2.0.1
         version: link:../html-css-minifier
       rollup-pluginutils:
         specifier: ^2.8.2
