@@ -1,0 +1,54 @@
+root: true
+extends:
+  - remcohaszing
+
+  # NOTE: Trying this out.
+  - 'plugin:depend/recommended'
+# files: ['*.js','*.mjs','*.ts','*.mts']
+
+rules:
+  no-console: warn
+
+  capitalized-comments: off
+
+  jsdoc/require-jsdoc: off
+
+  prettier/prettier: off
+
+  import/consistent-type-specifier-style: off
+
+  '@typescript-eslint/explicit-member-accessibility': off
+
+  '@typescript-eslint/explicit-function-return-type': warn
+
+  curly: off
+
+  max-len: off
+
+  no-inline-comments: off
+
+  # Clashing with TS-Lit-Plugin
+  unicorn/template-indent: off
+
+  # `==` against `null` can infer `undefined`
+  # See https://eslint.org/docs/latest/rules/eqeqeq#allow-null
+  eqeqeq: ['error', 'always', { 'null': 'ignore' }]
+
+  # It's stopped working suddenly (doesn't read the pjson engine correctly)
+  'n/no-unsupported-features/node-builtins': off
+
+  # TODO: Allow SCREAMING_CASE just for `objectLiteralProperty`
+  '@typescript-eslint/naming-convention':
+    - off
+    # - warn
+    # - selector:
+    #     # - 'classProperty'
+    #     - 'objectLiteralProperty'
+    #     # - 'typeProperty'
+    #     # - 'classMethod'
+    #     # - 'objectLiteralMethod'
+    #     # - 'typeMethod'
+    #     # - 'accessor'
+    #     # - 'enumMember'
+    #   format: null
+    #   modifiers: ['requiresQuotes']
