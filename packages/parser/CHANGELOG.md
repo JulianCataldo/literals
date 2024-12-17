@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/JulianCataldo/literals/compare/@literals/parser@2.0.0...@literals/parser@2.0.1) (2024-12-17)
+
+### Bug Fixes
+
+* update all possible dependencies ([c6d0a06](https://github.com/JulianCataldo/literals/commit/c6d0a06fb41eda3e4bf743dfeef2eb40106699be))
+
 # [2.0.0](https://github.com/JulianCataldo/literals/compare/@literals/parser@1.2.5...@literals/parser@2.0.0) (2024-07-29)
 
 * docs!: update links, format, add node demo, esm note ([3e1d386](https://github.com/JulianCataldo/literals/commit/3e1d3862e7929d1e42b0e54c8f2aa65d7f76c883))

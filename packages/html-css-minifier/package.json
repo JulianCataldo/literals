@@ -1,6 +1,6 @@
 {
   "name": "@literals/html-css-minifier",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Minify HTML template literal strings",
   "keywords": [
     "minify",
@@ -39,7 +39,7 @@
     "test": "c8 node --enable-source-maps --test dist/test/*.js"
   },
   "dependencies": {
-    "@literals/parser": "workspace:2.0.0",
+    "@literals/parser": "workspace:2.0.1",
     "@types/html-minifier-terser": "^7.0.2",
     "clean-css": "4.2.1",
     "html-minifier-terser": "^7.2.0",
